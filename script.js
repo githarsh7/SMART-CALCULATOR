@@ -1,8 +1,26 @@
 const SandCalculator = (() => {
     const display = document.getElementById('display');
     const buttons = document.querySelectorAll('button');
-    
     let currentValue = '';
+    
+    // Add floating sand particles
+    function createSandParticles() {
+        const container = document.querySelector('.floating-sands');
+        for (let i = 0; i < 10; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'sand-particle';
+            container.appendChild(particle);
+        }
+        
+        // Add sparkles
+        for (let i = 0; i < 5; i++) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle';
+            container.appendChild(sparkle);
+        }
+    }
+    
+    createSandParticles();
     
     function append(value) {
         if (currentValue.length >= 16) return;
