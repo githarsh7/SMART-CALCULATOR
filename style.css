@@ -37,46 +37,51 @@ body::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.22);
-    z-index: -1;
+    background: rgba(0, 0, 0, 0.14);
+    z-index: 0;
 }
 
 .floating-sands {
     position: fixed;
     inset: 0;
     pointer-events: none;
-    z-index: 0;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.sand-particle,
+.sparkle {
+    position: absolute;
+    pointer-events: none;
 }
 
 .sand-particle {
-    position: absolute;
     width: 4px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.8);
     border-radius: 50%;
-    animation: floatUp 15s infinite ease-in;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    animation: floatUp 15s linear infinite;
+    bottom: -10px;
 }
 
 .sparkle {
-    position: absolute;
     width: 6px;
     height: 6px;
-    background: rgba(255, 215, 0, 0.85);
+    background: rgba(255, 215, 0, 0.9);
     border-radius: 50%;
-    animation: sparkleGlow 4s infinite ease-in-out;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7), 0 0 40px rgba(255, 215, 0, 0.4);
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5);
+    animation: sparkleGlow 4s ease-in-out infinite;
 }
 
 @keyframes floatUp {
     0% {
-        transform: translateY(100vh) rotate(0deg);
+        transform: translateY(0) translateX(0) rotate(0deg);
         opacity: 0;
     }
     10% { opacity: 1; }
-    90% { opacity: 1; }
     100% {
-        transform: translateY(-100vh) rotate(720deg);
+        transform: translateY(-110vh) translateX(20px) rotate(720deg);
         opacity: 0;
     }
 }
@@ -93,8 +98,8 @@ body::before {
 }
 
 .calculator {
-    width: min(360px, 92vw);
-    max-height: 90svh;
+    width: min(360px, 88vw);
+    max-height: 86svh;
     overflow: auto;
     background: linear-gradient(145deg, rgba(245, 230, 211, 0.92), rgba(222, 184, 135, 0.92));
     border-radius: 24px;
@@ -105,7 +110,7 @@ body::before {
         inset 0 2px 8px rgba(255, 255, 255, 0.45);
     border: 3px solid rgba(255, 255, 255, 0.35);
     position: relative;
-    z-index: 10;
+    z-index: 2;
     animation: floatCalculator 6s ease-in-out infinite, fadeIn 1s ease-out;
 }
 
@@ -165,10 +170,6 @@ body::before {
     font-size: 0.68rem;
 }
 
-.display-container {
-    margin-bottom: 14px;
-}
-
 #display {
     width: 100%;
     height: 54px;
@@ -185,6 +186,7 @@ body::before {
         0 0 18px rgba(255, 215, 0, 0.18);
     border: 2px solid rgba(139, 69, 19, 0.1);
     outline: none;
+    margin-bottom: 14px;
 }
 
 .buttons {
@@ -208,6 +210,20 @@ button {
     transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
+    animation: buttonFloat 3s ease-in-out infinite;
+}
+
+button:nth-child(odd) {
+    animation-delay: 0.2s;
+}
+
+button:nth-child(even) {
+    animation-delay: 0.6s;
+}
+
+@keyframes buttonFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2px); }
 }
 
 button:hover {
@@ -241,22 +257,18 @@ button:active {
     }
 
     body::before {
-        background: rgba(0, 0, 0, 0.14);
+        background: rgba(0, 0, 0, 0.1);
     }
 
     .calculator {
-        width: 88vw;
-        max-height: 86svh;
+        width: 86vw;
+        max-height: 84svh;
         padding: 12px;
         border-radius: 18px;
     }
 
-    .calculator-header {
-        margin-bottom: 8px;
-    }
-
     .calculator-header h1 {
-        font-size: 1.1rem;
+        font-size: 1.08rem;
     }
 
     .version {
@@ -265,8 +277,8 @@ button:active {
     }
 
     #display {
-        height: 46px;
-        font-size: 1.15rem;
+        height: 44px;
+        font-size: 1.1rem;
         padding: 8px 10px;
         margin-bottom: 10px;
     }
@@ -276,36 +288,10 @@ button:active {
     }
 
     button {
-        height: 38px;
-        font-size: 0.9rem;
+        height: 36px;
+        font-size: 0.85rem;
         flex: 1 0 calc(25% - 5px);
         border-radius: 9px;
-    }
-
-    .equal {
-        height: 42px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 360px) {
-    .calculator {
-        width: 90vw;
-        padding: 10px;
-    }
-
-    .calculator-header h1 {
-        font-size: 1rem;
-    }
-
-    #display {
-        height: 42px;
-        font-size: 1rem;
-    }
-
-    button {
-        height: 36px;
-        font-size: 0.82rem;
     }
 
     .equal {
@@ -321,14 +307,7 @@ button:active {
     .sparkle {
         animation: none;
     }
-
     button {
         transition: none;
-    }
-}
-
-@media (forced-colors: active) {
-    .calculator {
-        border: 3px solid currentColor;
     }
 }
