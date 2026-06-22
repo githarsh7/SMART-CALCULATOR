@@ -1,210 +1,150 @@
-/* Reset */
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+:root {
+    --sand-light: #F5E6D3;
+    --sand-medium: #DEB887;
+    --sand-dark: #D2691E;
+    --sand-accent: #8B4513;
+    --ocean-light: #B0E0E6;
+    --ocean-medium: #87CEEB;
+    --ocean-dark: #5FA8C8;
+    --white: #FFFFFF;
+    --spacing: 16px;
+    --radius: 20px;
 }
 
-/* Background */
-body { 
-    height: 100vh; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    background: linear-gradient(180deg, 
-        #87CEEB 0%,    /* Sky blue */
-        #B0E0E6 30%,   /* Light blue */
-        #F4A460 50%,   /* Sandy brown */
-        #DEB887 70%,   /* Burlywood */
-        #D2691E 100%   /* Chocolate */
-    );
-    background-size: 100% 400%;
-    animation: sandShift 8s ease infinite;
-    position: relative;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-@keyframes sandShift {
-    0% { background-position: 0% 0%; }
-    50% { background-position: 0% 50%; }
-    100% { background-position: 0% 100%; }
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #B0E0E6, #87CEEB, #DEB887, #D2691E);
+    font-family: 'Segoe UI', sans-serif;
+    padding: 16px;
 }
 
-/* Sand texture overlay */
-body::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 5%),
-        radial-gradient(circle at 80% 70%, rgba(255,255,255,0.08) 0%, transparent 4%),
-        radial-gradient(circle at 50% 50%, rgba(210,105,30,0.05) 0%, transparent 6%);
-    animation: sandGlint 4s linear infinite;
-}
-
-@keyframes sandGlint {
-    0%, 100% { opacity: 0.5; }
-    50% { opacity: 1; }
-}
-
-/* Waves at bottom */
-body::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    background: 
-        linear-gradient(180deg, #87CEEB 0%, transparent 100%),
-        repeating-radial-gradient(circle at 50% 100%, #87CEEB 0%, transparent 30px);
-    opacity: 0.3;
-}
-
-/* Calculator Container */
-.calculator { 
-    background: linear-gradient(145deg, 
-        rgba(245, 222, 168, 0.95), 
-        rgba(210, 180, 140, 0.95)
-    ); 
-    backdrop-filter: blur(10px); 
-    padding: 30px; 
-    border-radius: 25px; 
-    width: 350px; 
-    box-shadow: 
-        0 20px 50px rgba(139, 69, 19, 0.4),
-        0 0 0 3px rgba(255, 255, 255, 0.3),
-        inset 0 2px 10px rgba(255, 255, 255, 0.5); 
-    text-align: center; 
-    border: 4px solid rgba(210, 180, 140, 0.8);
-    position: relative;
-}
-
-/* Sand grain texture on calculator */
-.calculator::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: 
-        radial-gradient(circle, rgba(139, 69, 19, 0.03) 1px, transparent 1px);
-    background-size: 8px 8px;
+.calculator {
+    width: 360px;
+    max-width: 95%;
+    background: linear-gradient(145deg, #F5E6D3, #DEB887);
     border-radius: 25px;
-    pointer-events: none;
+    padding: 24px;
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.2);
+    border: 3px solid rgba(255, 255, 255, 0.4);
 }
 
-/* Title */
-.calculator h1 { 
-    color: #8B4513; 
-    margin-bottom: 20px; 
-    font-size: 2.2rem;
-    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.6);
-    font-weight: bold;
-    letter-spacing: 2px;
+.calculator-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(139, 69, 19, 0.2);
 }
 
-/* Display */
-#display { 
-    width: 100%; 
-    height: 70px; 
-    border: none; 
-    border-radius: 15px; 
-    margin-bottom: 25px; 
-    padding: 15px; 
-    font-size: 2rem; 
-    text-align: right; 
-    outline: none; 
-    background: linear-gradient(180deg, #FFF8DC, #F5DEB3);
+.calculator-header h1 {
     color: #8B4513;
-    box-shadow: 
-        inset 0 4px 8px rgba(139, 69, 19, 0.2),
-        0 2px 5px rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(210, 180, 140, 0.6);
-}
-
-/* Buttons grid */
-.buttons { 
-    display: flex; 
-    flex-wrap: wrap; 
-    gap: 12px; 
-}
-
-/* Buttons */
-button { 
-    flex: 1 0 22%; 
-    height: 55px; 
-    border: none; 
-    border-radius: 15px; 
-    font-size: 1.5rem; 
-    cursor: pointer; 
-    transition: all 0.3s; 
-    background: linear-gradient(145deg, #FFFEF0, #F5E6D3); 
-    box-shadow: 
-        0 6px 15px rgba(139, 69, 19, 0.2),
-        0 0 0 1px rgba(210, 180, 140, 0.4),
-        inset 0 1px 3px rgba(255, 255, 255, 0.6); 
+    font-size: 1.8rem;
     font-weight: 600;
+}
+
+.version {
+    background: #87CEEB;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+}
+
+.display-container {
+    margin-bottom: 24px;
+}
+
+#display {
+    width: 100%;
+    height: 72px;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 2.2rem;
+    font-family: 'SF Mono', monospace;
+    text-align: right;
+    background: linear-gradient(180deg, #FFFFFF, #F5E6D3);
     color: #8B4513;
+    box-shadow: inset 0 3px 6px rgba(139, 69, 19, 0.15);
+    border: 2px solid rgba(139, 69, 19, 0.1);
+    outline: none;
 }
 
-/* Hover effect - sand ripple */
-button:hover { 
-    transform: translateY(-3px) scale(1.05); 
-    background: linear-gradient(145deg, #FFF8E0, #FFE4C4); 
-    box-shadow: 
-        0 10px 25px rgba(139, 69, 19, 0.3),
-        0 0 0 2px rgba(255, 255, 255, 0.6);
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
 }
 
-/* Click effect - sand press */
+button {
+    flex: 1 0 22%;
+    height: 58px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.6rem;
+    font-family: 'SF Mono', monospace;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(145deg, #FFFFFF, #F5E6D3);
+    color: #8B4513;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.15s;
+}
+
+button:hover {
+    transform: translateY(-2px) scale(1.03);
+    background: linear-gradient(145deg, #FFFFFF, #F8F8F8);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
 button:active {
-    transform: translateY(2px) scale(0.98);
-    box-shadow: 
-        0 2px 8px rgba(139, 69, 19, 0.3),
-        inset 0 3px 6px rgba(139, 69, 19, 0.2);
+    transform: translateY(1px) scale(0.98);
 }
 
-/* Equal button - ocean wave */
-.equal { 
-    flex: 1 0 48%; 
-    background: linear-gradient(145deg, #87CEEB, #5FA8C8); 
-    color: white; 
-    font-size: 2rem;
-    font-weight: bold;
-    box-shadow: 
-        0 8px 20px rgba(135, 206, 235, 0.4),
-        0 0 0 2px rgba(255, 255, 255, 0.4),
-        inset 0 1px 3px rgba(255, 255, 255, 0.3);
+.equal {
+    flex: 1 0 48%;
+    background: linear-gradient(145deg, #87CEEB, #5FA8C8);
+    color: white;
+    font-size: 2.2rem;
+    font-weight: 700;
 }
 
 .equal:hover {
     background: linear-gradient(145deg, #5FA8C8, #87CEEB);
-    transform: translateY(-3px) scale(1.08);
-    box-shadow: 
-        0 12px 30px rgba(135, 206, 235, 0.5),
-        0 0 0 3px rgba(255, 255, 255, 0.7);
+    transform: translateY(-2px) scale(1.05);
 }
 
-/* Responsive Design */
-@media (max-width: 500px) { 
-    .calculator { 
-        width: 95%; 
-        padding: 20px; 
-    } 
-    button { 
-        height: 50px; 
-        font-size: 1.3rem; 
+@media (max-width: 500px) {
+    .calculator {
+        width: 98%;
+        padding: 16px;
     }
-    #display { 
-        height: 60px; 
-        font-size: 1.6rem; 
+    
+    .calculator-header h1 {
+        font-size: 1.5rem;
     }
-    .calculator h1 { 
-        font-size: 1.7rem; 
+    
+    #display {
+        height: 64px;
+        font-size: 1.8rem;
+    }
+    
+    button {
+        height: 52px;
+        font-size: 1.4rem;
+    }
+    
+    .equal {
+        font-size: 1.8rem;
     }
 }
