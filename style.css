@@ -16,37 +16,34 @@
     box-sizing: border-box;
 }
 
+html, body {
+    width: 100%;
+    min-height: 100%;
+}
+
 body {
-    min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: url('https://images.pexels.com/photos/33709324/pexels-photo-33709324.jpeg') center center/cover no-repeat;
+    background: url('https://images.pexels.com/photos/33709324/pexels-photo-33709324.jpeg') center center / cover no-repeat;
     font-family: 'Segoe UI', sans-serif;
-    padding: 16px;
+    padding: 12px;
     overflow: hidden;
     position: relative;
 }
 
-/* Dark overlay for better contrast */
 body::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    inset: 0;
+    background: rgba(0, 0, 0, 0.28);
     z-index: -1;
 }
 
-/* Floating sand particles */
 .floating-sands {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     pointer-events: none;
     z-index: 0;
 }
@@ -61,16 +58,15 @@ body::before {
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-.sand-particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
-.sand-particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 15s; }
-.sand-particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; }
-.sand-particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 14s; }
-.sand-particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 16s; }
-.sand-particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
-.sand-particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 17s; }
-.sand-particle:nth-child(8) { left: 80%; animation-delay: 1.5s; animation-duration: 15s; }
-.sand-particle:nth-child(9) { left: 90%; animation-delay: 3.5s; animation-duration: 14s; }
-.sand-particle:nth-child(10) { left: 15%; animation-delay: 4.5s; animation-duration: 16s; }
+.sparkle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(255, 215, 0, 0.9);
+    border-radius: 50%;
+    animation: sparkleGlow 4s infinite ease-in-out;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5);
+}
 
 @keyframes floatUp {
     0% {
@@ -89,23 +85,6 @@ body::before {
     }
 }
 
-/* Glowing sparkles */
-.sparkle {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: rgba(255, 215, 0, 0.9);
-    border-radius: 50%;
-    animation: sparkleGlow 4s infinite ease-in-out;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5);
-}
-
-.sparkle:nth-child(1) { top: 20%; left: 15%; animation-delay: 0s; }
-.sparkle:nth-child(2) { top: 35%; left: 85%; animation-delay: 1s; }
-.sparkle:nth-child(3) { top: 50%; left: 25%; animation-delay: 2s; }
-.sparkle:nth-child(4) { top: 65%; left: 90%; animation-delay: 1.5s; }
-.sparkle:nth-child(5) { top: 80%; left: 40%; animation-delay: 0.5s; }
-
 @keyframes sparkleGlow {
     0%, 100% {
         transform: scale(0);
@@ -118,12 +97,13 @@ body::before {
 }
 
 .calculator {
-    width: 360px;
-    max-width: 95%;
+    width: min(360px, 92vw);
+    max-height: 90svh;
+    overflow: auto;
     background: linear-gradient(145deg, rgba(245, 230, 211, 0.95), rgba(222, 184, 135, 0.95));
     border-radius: 25px;
-    padding: 24px;
-    box-shadow: 
+    padding: 20px;
+    box-shadow:
         0 20px 60px rgba(0, 0, 0, 0.5),
         0 0 0 2px rgba(255, 255, 255, 0.3),
         inset 0 2px 8px rgba(255, 255, 255, 0.5);
@@ -135,17 +115,17 @@ body::before {
 
 @keyframes floatCalculator {
     0%, 100% {
-        transform: translateY(0) rotate(0deg);
+        transform: translateY(0);
     }
     50% {
-        transform: translateY(-15px) rotate(0.5deg);
+        transform: translateY(-12px);
     }
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.9);
+        transform: translateY(20px) scale(0.95);
     }
     to {
         opacity: 1;
@@ -156,10 +136,7 @@ body::before {
 .calculator::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    inset: 0;
     background-image: radial-gradient(rgba(139, 69, 19, 0.03) 1px, transparent 1px);
     background-size: 10px 10px;
     border-radius: 25px;
@@ -173,56 +150,19 @@ body::before {
     100% { opacity: 0.3; }
 }
 
-.calculator::after {
-    content: '';
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    right: -20px;
-    bottom: -20px;
-    background: radial-gradient(circle at 50% 50%, rgba(255, 215, 0, 0.1), transparent 50%);
-    animation: rotateGlow 10s linear infinite;
-    pointer-events: none;
-    z-index: -1;
-}
-
-@keyframes rotateGlow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
 .calculator-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     padding-bottom: 8px;
     border-bottom: 1px solid rgba(139, 69, 19, 0.2);
-    animation: slideDown 0.8s ease-out;
-}
-
-@keyframes slideDown {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 .calculator-header h1 {
     color: #8B4513;
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 600;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    animation: textGlow 3s ease-in-out infinite;
-}
-
-@keyframes textGlow {
-    0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
-    50% { text-shadow: 0 0 30px rgba(255, 215, 0, 0.8); }
 }
 
 .version {
@@ -230,193 +170,146 @@ body::before {
     color: white;
     padding: 4px 8px;
     border-radius: 8px;
-    font-size: 0.75rem;
-    animation: pulseVersion 2s ease-in-out infinite;
-}
-
-@keyframes pulseVersion {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
+    font-size: 0.72rem;
 }
 
 .display-container {
-    margin-bottom: 24px;
-    animation: slideInLeft 1s ease-out 0.3s;
-}
-
-@keyframes slideInLeft {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+    margin-bottom: 16px;
 }
 
 #display {
     width: 100%;
-    height: 72px;
+    height: 58px;
     border: none;
     border-radius: 12px;
-    padding: 16px;
-    font-size: 2.2rem;
+    padding: 12px;
+    font-size: 1.6rem;
     font-family: 'SF Mono', monospace;
     text-align: right;
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 211, 0.95));
     color: #8B4513;
-    box-shadow: 
+    box-shadow:
         inset 0 3px 6px rgba(139, 69, 19, 0.15),
         0 0 20px rgba(255, 215, 0, 0.2);
     border: 2px solid rgba(139, 69, 19, 0.1);
     outline: none;
-    transition: all 0.3s;
-    animation: displayGlow 4s ease-in-out infinite;
-}
-
-#display:focus {
-    box-shadow: 
-        inset 0 3px 6px rgba(139, 69, 19, 0.15),
-        0 0 30px rgba(135, 206, 235, 0.6);
-}
-
-@keyframes displayGlow {
-    0%, 100% { box-shadow: inset 0 3px 6px rgba(139, 69, 19, 0.15), 0 0 20px rgba(255, 215, 0, 0.2); }
-    50% { box-shadow: inset 0 3px 6px rgba(139, 69, 19, 0.15), 0 0 40px rgba(255, 215, 0, 0.4); }
 }
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    animation: slideInUp 1s ease-out 0.6s;
-}
-
-@keyframes slideInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    gap: 7px;
 }
 
 button {
-    flex: 1 0 22%;
-    height: 58px;
+    flex: 1 0 calc(25% - 7px);
+    height: 48px;
     border: none;
     border-radius: 12px;
-    font-size: 1.6rem;
+    font-size: 1.15rem;
     font-family: 'SF Mono', monospace;
     font-weight: 600;
     cursor: pointer;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 211, 0.95));
     color: #8B4513;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
+    transition: all 0.2s ease;
     position: relative;
     overflow: hidden;
 }
 
-button::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
-    transition: left 0.5s;
-}
-
-button:hover::before {
-    left: 100%;
-}
-
 button:hover {
-    transform: translateY(-3px) scale(1.05) rotate(1deg);
+    transform: translateY(-2px) scale(1.03);
     background: linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(248, 248, 248, 0.95));
-    box-shadow: 
-        0 8px 24px rgba(0, 0, 0, 0.15),
-        0 0 20px rgba(255, 255, 255, 0.6);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 button:active {
-    transform: translateY(2px) scale(0.97);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-button:nth-child(1) { animation: bounceButton 3s ease-in-out infinite 0s; }
-button:nth-child(2) { animation: bounceButton 3s ease-in-out infinite 0.3s; }
-button:nth-child(3) { animation: bounceButton 3s ease-in-out infinite 0.6s; }
-button:nth-child(4) { animation: bounceButton 3s ease-in-out infinite 0.9s; }
-button:nth-child(5) { animation: bounceButton 3s ease-in-out infinite 1.2s; }
-button:nth-child(6) { animation: bounceButton 3s ease-in-out infinite 1.5s; }
-button:nth-child(7) { animation: bounceButton 3s ease-in-out infinite 1.8s; }
-button:nth-child(8) { animation: bounceButton 3s ease-in-out infinite 2.1s; }
-
-@keyframes bounceButton {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-2px); }
+    transform: translateY(1px) scale(0.98);
 }
 
 .equal {
-    flex: 1 0 48%;
+    flex: 1 0 calc(50% - 7px);
     background: linear-gradient(145deg, #87CEEB, #5FA8C8);
     color: white;
-    font-size: 2.2rem;
+    font-size: 1.4rem;
     font-weight: 700;
-    box-shadow: 
+    box-shadow:
         0 6px 20px rgba(135, 206, 235, 0.4),
         0 0 30px rgba(135, 206, 235, 0.3);
-    animation: equalPulse 2s ease-in-out infinite;
-}
-
-@keyframes equalPulse {
-    0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 6px 20px rgba(135, 206, 235, 0.4), 0 0 30px rgba(135, 206, 235, 0.3);
-    }
-    50% { 
-        transform: scale(1.02);
-        box-shadow: 0 8px 30px rgba(135, 206, 235, 0.6), 0 0 50px rgba(135, 206, 235, 0.5);
-    }
 }
 
 .equal:hover {
     background: linear-gradient(145deg, #5FA8C8, #87CEEB);
-    transform: translateY(-3px) scale(1.08);
-    box-shadow: 
-        0 12px 40px rgba(135, 206, 235, 0.7),
-        0 0 60px rgba(135, 206, 235, 0.5);
+    transform: translateY(-2px) scale(1.05);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 420px) {
+    body {
+        padding: 8px;
+    }
+
     .calculator {
-        width: 98%;
-        padding: 16px;
-        animation: floatCalculator 6s ease-in-out infinite 0.5s, fadeIn 1s ease-out;
+        width: 94vw;
+        max-height: 92svh;
+        padding: 14px;
+        border-radius: 20px;
     }
-    
+
+    .calculator-header {
+        margin-bottom: 10px;
+    }
+
     .calculator-header h1 {
-        font-size: 1.5rem;
+        font-size: 1.25rem;
     }
-    
+
+    .version {
+        font-size: 0.65rem;
+        padding: 3px 7px;
+    }
+
     #display {
-        height: 64px;
-        font-size: 1.8rem;
-    }
-    
-    button {
         height: 52px;
-        font-size: 1.4rem;
+        font-size: 1.35rem;
+        padding: 10px;
+        margin-bottom: 14px;
     }
-    
+
+    .buttons {
+        gap: 6px;
+    }
+
+    button {
+        height: 42px;
+        font-size: 1rem;
+        flex: 1 0 calc(25% - 6px);
+        border-radius: 10px;
+    }
+
     .equal {
-        font-size: 1.8rem;
+        height: 46px;
+        font-size: 1.15rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .calculator {
+        padding: 12px;
+    }
+
+    .calculator-header h1 {
+        font-size: 1.1rem;
+    }
+
+    #display {
+        height: 48px;
+        font-size: 1.2rem;
+    }
+
+    button {
+        height: 40px;
+        font-size: 0.95rem;
     }
 }
 
@@ -426,5 +319,14 @@ button:nth-child(8) { animation: bounceButton 3s ease-in-out infinite 2.1s; }
     .sand-particle,
     .sparkle {
         animation: none;
+    }
+    button {
+        transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .calculator {
+        border: 3px solid currentColor;
     }
 }
