@@ -1,6 +1,6 @@
 # Responsive Keyboard Calculator
 
-A modern and responsive calculator built using HTML, CSS, and JavaScript.  
+A modern and responsive calculator built using HTML, CSS and JavaScript.  
 This project focuses on keyboard event handling, expression evaluation, input validation, and responsive UI design.
 
 ---
