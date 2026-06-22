@@ -3,57 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sand Calculator | Professional Edition</title>
+    <title>Sand Calculator ✨</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main class="calculator" role="main" aria-label="Sand themed calculator">
+    <div class="floating-sands"></div>
+    
+    <main class="calculator">
         <header class="calculator-header">
-            <h1 data-testid="calculator-title">Sand Calculator</h1>
-            <span class="version-badge" data-testid="version">v1.0.0</span>
+            <h1>Sand Calculator</h1>
+            <span class="version">v1.0.0</span>
         </header>
         
         <div class="display-container">
-            <input 
-                type="text" 
-                id="display" 
-                placeholder="0" 
-                aria-label="Calculator display" 
-                readonly 
-                data-testid="display-input"
-            />
-            <div class="expression-preview" id="expressionPreview" data-testid="expression-preview"></div>
+            <input type="text" id="display" placeholder="0" readonly>
         </div>
         
-        <div class="buttons" role="group" aria-label="Calculator buttons">
-            <button data-value="7" role="button" aria-label="Seven">7</button>
-            <button data-value="8" role="button" aria-label="Eight">8</button>
-            <button data-value="9" role="button" aria-label="Nine">9</button>
-            <button data-value="/" role="button" aria-label="Divide">÷</button>
+        <div class="buttons">
+            <button data-value="7">7</button>
+            <button data-value="8">8</button>
+            <button data-value="9">9</button>
+            <button data-value="/">÷</button>
             
-            <button data-value="4" role="button" aria-label="Four">4</button>
-            <button data-value="5" role="button" aria-label="Five">5</button>
-            <button data-value="6" role="button" aria-label="Six">6</button>
-            <button data-value="*" role="button" aria-label="Multiply">×</button>
+            <button data-value="4">4</button>
+            <button data-value="5">5</button>
+            <button data-value="6">6</button>
+            <button data-value="*">×</button>
             
-            <button data-value="1" role="button" aria-label="One">1</button>
-            <button data-value="2" role="button" aria-label="Two">2</button>
-            <button data-value="3" role="button" aria-label="Three">3</button>
-            <button data-value="-" role="button" aria-label="Subtract">−</button>
+            <button data-value="1">1</button>
+            <button data-value="2">2</button>
+            <button data-value="3">3</button>
+            <button data-value="-">−</button>
             
-            <button data-value="0" role="button" aria-label="Zero">0</button>
-            <button data-value="." role="button" aria-label="Decimal point">.</button>
-            <button data-value="%" role="button" aria-label="Modulus">%</button>
-            <button data-value="+" role="button" aria-label="Add">+</button>
+            <button data-value="0">0</button>
+            <button data-value=".">.</button>
+            <button data-value="%">%</button>
+            <button data-value="+">+</button>
             
-            <button id="clear" role="button" aria-label="Clear">C</button>
-            <button id="backspace" role="button" aria-label="Backspace">←</button>
-            <button id="equals" class="equal" role="button" aria-label="Calculate result">=</button>
+            <button id="clear">C</button>
+            <button id="backspace">←</button>
+            <button id="equals" class="equal">=</button>
         </div>
-        
-        <footer class="calculator-footer">
-            <span class="status-indicator" id="statusIndicator" data-testid="status">Ready</span>
-        </footer>
     </main>
     
     <script src="script.js"></script>
