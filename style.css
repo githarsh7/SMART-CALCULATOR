@@ -28,7 +28,7 @@ body {
     align-items: center;
     background: url('https://images.pexels.com/photos/33709324/pexels-photo-33709324.jpeg') center center / cover no-repeat;
     font-family: 'Segoe UI', sans-serif;
-    padding: 10px;
+    padding: 8px;
     overflow: hidden;
     position: relative;
 }
@@ -37,7 +37,7 @@ body::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.14);
+    background: rgba(0, 0, 0, 0.12);
     z-index: 0;
 }
 
@@ -58,11 +58,12 @@ body::before {
 .sand-particle {
     width: 4px;
     height: 4px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.85);
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    animation: floatUp 15s linear infinite;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.55);
+    animation: floatUp 14s linear infinite;
     bottom: -10px;
+    opacity: 0;
 }
 
 .sparkle {
@@ -70,18 +71,20 @@ body::before {
     height: 6px;
     background: rgba(255, 215, 0, 0.9);
     border-radius: 50%;
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.5);
-    animation: sparkleGlow 4s ease-in-out infinite;
+    box-shadow: 0 0 18px rgba(255, 215, 0, 0.8), 0 0 36px rgba(255, 215, 0, 0.45);
+    animation: sparkleGlow 3.5s ease-in-out infinite;
 }
 
 @keyframes floatUp {
     0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.8);
         opacity: 0;
     }
-    10% { opacity: 1; }
+    8% {
+        opacity: 1;
+    }
     100% {
-        transform: translateY(-110vh) translateX(20px) rotate(720deg);
+        transform: translateY(-110vh) translateX(24px) rotate(720deg) scale(1.15);
         opacity: 0;
     }
 }
@@ -92,23 +95,23 @@ body::before {
         opacity: 0;
     }
     50% {
-        transform: scale(1.4);
+        transform: scale(1.5);
         opacity: 1;
     }
 }
 
 .calculator {
-    width: min(360px, 88vw);
-    max-height: 86svh;
+    width: min(360px, 86vw);
+    max-height: 88svh;
     overflow: auto;
-    background: linear-gradient(145deg, rgba(245, 230, 211, 0.92), rgba(222, 184, 135, 0.92));
+    background: linear-gradient(145deg, rgba(245, 230, 211, 0.90), rgba(222, 184, 135, 0.90));
     border-radius: 24px;
-    padding: 18px;
+    padding: 16px;
     box-shadow:
-        0 20px 60px rgba(0, 0, 0, 0.45),
-        0 0 0 2px rgba(255, 255, 255, 0.25),
-        inset 0 2px 8px rgba(255, 255, 255, 0.45);
-    border: 3px solid rgba(255, 255, 255, 0.35);
+        0 20px 55px rgba(0, 0, 0, 0.40),
+        0 0 0 2px rgba(255, 255, 255, 0.22),
+        inset 0 2px 8px rgba(255, 255, 255, 0.35);
+    border: 2px solid rgba(255, 255, 255, 0.28);
     position: relative;
     z-index: 2;
     animation: floatCalculator 6s ease-in-out infinite, fadeIn 1s ease-out;
@@ -122,7 +125,7 @@ body::before {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(18px) scale(0.96);
+        transform: translateY(18px) scale(0.95);
     }
     to {
         opacity: 1;
@@ -134,91 +137,91 @@ body::before {
     content: '';
     position: absolute;
     inset: 0;
-    background-image: radial-gradient(rgba(139, 69, 19, 0.03) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(139, 69, 19, 0.025) 1px, transparent 1px);
     background-size: 10px 10px;
     border-radius: 24px;
     pointer-events: none;
-    animation: shimmer 8s linear infinite;
+    animation: shimmer 7s linear infinite;
 }
 
 @keyframes shimmer {
-    0% { opacity: 0.25; }
-    50% { opacity: 0.7; }
-    100% { opacity: 0.25; }
+    0% { opacity: 0.22; }
+    50% { opacity: 0.6; }
+    100% { opacity: 0.22; }
 }
 
 .calculator-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     padding-bottom: 8px;
-    border-bottom: 1px solid rgba(139, 69, 19, 0.18);
+    border-bottom: 1px solid rgba(139, 69, 19, 0.16);
 }
 
 .calculator-header h1 {
     color: #8B4513;
-    font-size: 1.45rem;
+    font-size: 1.3rem;
     font-weight: 600;
 }
 
 .version {
     background: #87CEEB;
     color: white;
-    padding: 4px 8px;
+    padding: 3px 7px;
     border-radius: 8px;
-    font-size: 0.68rem;
+    font-size: 0.62rem;
 }
 
 #display {
     width: 100%;
-    height: 54px;
+    height: 48px;
     border: none;
     border-radius: 12px;
-    padding: 10px 12px;
-    font-size: 1.45rem;
+    padding: 8px 10px;
+    font-size: 1.25rem;
     font-family: 'SF Mono', monospace;
     text-align: right;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 211, 0.95));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(245, 230, 211, 0.96));
     color: #8B4513;
     box-shadow:
-        inset 0 3px 6px rgba(139, 69, 19, 0.14),
-        0 0 18px rgba(255, 215, 0, 0.18);
-    border: 2px solid rgba(139, 69, 19, 0.1);
+        inset 0 3px 6px rgba(139, 69, 19, 0.12),
+        0 0 16px rgba(255, 215, 0, 0.14);
+    border: 1px solid rgba(139, 69, 19, 0.1);
     outline: none;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 
 .buttons {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
+    gap: 5px;
 }
 
 button {
-    flex: 1 0 calc(25% - 6px);
-    height: 44px;
+    flex: 1 0 calc(25% - 5px);
+    height: 40px;
     border: none;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-family: 'SF Mono', monospace;
     font-weight: 600;
     cursor: pointer;
     background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 211, 0.95));
     color: #8B4513;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.09);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
     position: relative;
     overflow: hidden;
     animation: buttonFloat 3s ease-in-out infinite;
 }
 
 button:nth-child(odd) {
-    animation-delay: 0.2s;
+    animation-delay: 0.15s;
 }
 
 button:nth-child(even) {
-    animation-delay: 0.6s;
+    animation-delay: 0.55s;
 }
 
 @keyframes buttonFloat {
@@ -228,7 +231,7 @@ button:nth-child(even) {
 
 button:hover {
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.14);
+    box-shadow: 0 7px 16px rgba(0, 0, 0, 0.12);
 }
 
 button:active {
@@ -236,14 +239,14 @@ button:active {
 }
 
 .equal {
-    flex: 1 0 calc(50% - 6px);
+    flex: 1 0 calc(50% - 5px);
     background: linear-gradient(145deg, #87CEEB, #5FA8C8);
     color: white;
-    font-size: 1.15rem;
+    font-size: 1rem;
     font-weight: 700;
     box-shadow:
-        0 6px 18px rgba(135, 206, 235, 0.35),
-        0 0 24px rgba(135, 206, 235, 0.25);
+        0 6px 16px rgba(135, 206, 235, 0.32),
+        0 0 22px rgba(135, 206, 235, 0.22);
 }
 
 .equal:hover {
@@ -253,50 +256,79 @@ button:active {
 
 @media (max-width: 420px) {
     body {
-        padding: 6px;
+        padding: 4px;
     }
 
     body::before {
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(0, 0, 0, 0.06);
     }
 
     .calculator {
-        width: 86vw;
-        max-height: 84svh;
-        padding: 12px;
+        width: 82vw;
+        max-height: 82svh;
+        padding: 10px;
         border-radius: 18px;
     }
 
+    .calculator-header {
+        margin-bottom: 8px;
+    }
+
     .calculator-header h1 {
-        font-size: 1.08rem;
+        font-size: 1rem;
     }
 
     .version {
-        font-size: 0.6rem;
-        padding: 3px 6px;
+        font-size: 0.56rem;
+        padding: 2px 6px;
     }
 
     #display {
-        height: 44px;
-        font-size: 1.1rem;
-        padding: 8px 10px;
+        height: 42px;
+        font-size: 1.05rem;
         margin-bottom: 10px;
     }
 
     .buttons {
-        gap: 5px;
+        gap: 4px;
     }
 
     button {
         height: 36px;
-        font-size: 0.85rem;
-        flex: 1 0 calc(25% - 5px);
-        border-radius: 9px;
+        font-size: 0.82rem;
+        flex: 1 0 calc(25% - 4px);
+        border-radius: 8px;
     }
 
     .equal {
+        height: 38px;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .calculator {
+        width: 78vw;
+        padding: 9px;
+    }
+
+    .calculator-header h1 {
+        font-size: 0.92rem;
+    }
+
+    #display {
         height: 40px;
         font-size: 0.95rem;
+    }
+
+    button {
+        height: 34px;
+        font-size: 0.76rem;
+    }
+
+    .equal {
+        height: 36px;
+        font-size: 0.85rem;
     }
 }
 
@@ -307,7 +339,14 @@ button:active {
     .sparkle {
         animation: none;
     }
+
     button {
         transition: none;
+    }
+}
+
+@media (forced-colors: active) {
+    .calculator {
+        border: 3px solid currentColor;
     }
 }
